@@ -36,14 +36,21 @@
     <script>
         const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF'];
         const blinkSpeeds = [0.5, 1, 1.5, 2, 2.5];
+        const gridWidth = 100;
+        const gridHeight = 100;
+        const cellSize = 10;
 
         function getRandomColor(colors) {
             return colors[Math.floor(Math.random() * colors.length)];
         }
 
         const container = document.getElementById('squares-grid');
+        container.style.gridTemplateColumns =
+            `repeat(${gridWidth}, ${cellSize}px)`;
+        container.style.width = `${gridWidth * cellSize}px`;
+        container.style.height = `${gridHeight * cellSize}px`;
 
-        for (let i = 0; i < 10000; i++) {
+        for (let i = 0; i < gridWidth * gridHeight; i++) {
             const square = document.createElement('div');
             square.classList.add('square');
             square.style.backgroundColor = getRandomColor(colors);
