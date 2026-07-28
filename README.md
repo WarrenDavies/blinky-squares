@@ -1,24 +1,27 @@
 # Blinky Squares
 
-It's squares, that blink.
+*__It's squares. That blink.__*
 
 As you will no doubt have noticed, if you have spent any time at all on the internet, the vast majority of websites are lacking a grid of squares that blink at different speeds and in different ways.
 
 Far too many JavaScript libraries, and indeed, JavaScript developers, are focused on "real world problems" like "accessibility", "performance optimisation", and "user experience". As a result they build products without even a single blinking square.
 
-This is obviously ridiculous and something we should not stand for as a species.
+This is obviously ridiculous and not something we should stand for as a species.
 
 Blinky Squares aims to solve that problem, and eventually, to become the global standard in squares that blink.
 
+
 ## Features
 
-At present you have a Control Panel where you can spend hours of fun experimenting with squares that blink.
+Blinky Squares empowers you with a Control Panel, enabling you to spend hours of fun experimenting with squares that blink.
 
-The Blinky Squares Control Panel currently has the following powerful features:
+The Control Panel has the following powerful features:
 
 * **Width**: You can choose how many squares wide your grid of blinky squares should be.
 * **Height**: Crucially, you can also choose the height.
-* **Square Size**: You can choose the size of the squares themselves - giving you control at both a macro and micro level.
+* **Square Size**: You can choose the size of the squares themselves - giving you control at both a macro and a micro level.
+* ** ***__NEW__*** ** **Colour Picker**: With the Advanced Colour Picker technology, you can choose from over **16.7 million** different colours for your square. No matter your style, your brand, or your mood, you can create the blinking squares that are right for you.
+
 
 ## Future Developments
 
