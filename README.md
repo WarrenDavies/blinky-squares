@@ -6,7 +6,9 @@ As you will no doubt have noticed, if you have spent any time at all on the inte
 
 Far too many JavaScript libraries, and indeed, JavaScript developers, are focused on "real world problems" like "accessibility", "performance optimisation", and "user experience". As a result they build products without even a single blinking square.
 
-This is obviously ridiculous and not something we should stand for as a species.
+What's worse, there are a shocking number of websites out there with **completely static squares**.
+
+This is obviously ridiculous, and not something we should stand for as a species.
 
 Blinky Squares aims to solve that problem, and eventually, to become the global standard in squares that blink.
 
