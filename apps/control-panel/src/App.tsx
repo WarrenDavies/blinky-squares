@@ -6,7 +6,7 @@ function App() {
         width: 100,
         height: 100,
         cellSize: 10,
-        colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF'],
+        colours: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF'],
         blinkSpeeds: [0.5, 1, 1.5, 2, 2.5],
     });
     const gridRef = useRef(null);
@@ -18,7 +18,6 @@ function App() {
     function drawGrid(
         gridConfig,
     ) {
-        console.log(gridConfig)
         const gridContainer = gridRef.current
         gridContainer.innerHTML = '';
         gridContainer.style.gridTemplateColumns =
@@ -29,7 +28,7 @@ function App() {
         for (let i = 0; i < gridConfig.width * gridConfig.height; i++) {
             const square = document.createElement('div');
             square.classList.add('square');
-            square.style.backgroundColor = getRandomColor(gridConfig.colors);
+            square.style.backgroundColor = getRandomColor(gridConfig.colours);
             
             const randomSpeed = gridConfig.blinkSpeeds[Math.floor(Math.random() * gridConfig.blinkSpeeds.length)];
             square.style.animationDuration = `${randomSpeed}s`;
@@ -37,18 +36,7 @@ function App() {
 
             gridContainer.appendChild(square);
         }
-        console.log("drawing")
     }
-
-    // document.getElementById('control-panel').addEventListener('input', (e) => {
-    //     if (e.target.classList.contains('colour-picker')) {
-    //         const pickerId = e.target.id;
-    //         const pickerIndex = parseInt(pickerId.replace('colour-picker', ''));
-    //         gridConfig.colors[pickerIndex] = e.target.value;
-    //         drawGrid(gridConfig);
-    //     }
-    // });
-
 
     useEffect(() => {
         drawGrid(
@@ -56,7 +44,6 @@ function App() {
         )
     }, [gridConfig]);
     
-
   return (
     <>
       <header id="main-header">
@@ -115,23 +102,88 @@ function App() {
                   </label>
                   <label>
                       Colour 1:
-                      <input type="color" id="colour-picker0" className="colour-picker" value="#FF0000" />
+                      <input 
+                        type="color"
+                        id="colour-picker0"
+                        className="colour-picker"
+                        value={gridConfig.colours[0]}
+                        onChange={(e) =>
+                            setGridConfig(config => ({
+                                ...config,
+                                colours: config.colours.map((colour, i) =>
+                                    i === 0 ? e.target.value : colour
+                                )
+                            }))
+                        }
+                     />
                   </label>
                   <label>
                       Colour 2:
-                      <input type="color" id="colour-picker1" className="colour-picker" value="#00FF00" />
+                      <input 
+                        type="color"
+                        id="colour-picker1"
+                        className="colour-picker"
+                        value={gridConfig.colours[1]}
+                        onChange={(e) =>
+                            setGridConfig(config => ({
+                                ...config,
+                                colours: config.colours.map((colour, i) =>
+                                    i === 1 ? e.target.value : colour
+                                )
+                            }))
+                        }
+                     />
                   </label>
                   <label>
                       Colour 3:
-                      <input type="color" id="colour-picker2" className="colour-picker" value="#0000FF" />
+                      <input 
+                        type="color"
+                        id="colour-picker2"
+                        className="colour-picker"
+                        value={gridConfig.colours[2]}
+                        onChange={(e) =>
+                            setGridConfig(config => ({
+                                ...config,
+                                colours: config.colours.map((colour, i) =>
+                                    i === 2 ? e.target.value : colour
+                                )
+                            }))
+                        }
+                     />
                   </label>
                   <label>
                       Colour 4:
-                      <input type="color" id="colour-picker3" className="colour-picker" value="#FFFF00" />
+                      <input 
+                        type="color"
+                        id="colour-picker3"
+                        className="colour-picker"
+                        value={gridConfig.colours[3]}
+                        onChange={(e) =>
+                            setGridConfig(config => ({
+                                ...config,
+                                colours: config.colours.map((colour, i) =>
+                                    i === 3 ? e.target.value : colour
+                                )
+                            }))
+                        }
+                     />
                   </label>
                   <label>
                       Colour 5:
-                      <input type="color" id="colour-picker4" className="colour-picker" value="#FF00FF" />
+                      <input 
+                        type="color"
+                        id="colour-picker4"
+                        className="colour-picker"
+                        value={gridConfig.colours[4]}
+                        onChange={(e) =>
+                            setGridConfig(config => ({
+                                ...config,
+                                colours: config.colours.map((colour, i) =>
+                                    i === 4 ? e.target.value : colour
+                                )
+                            }))
+                        }
+                     />
                   </label>
           </aside>
           <div id="grid-container">
