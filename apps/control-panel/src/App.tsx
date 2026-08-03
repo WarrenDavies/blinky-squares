@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import './App.css'
+import { ColourPicker } from './components/ColourPicker';
 
 function App() {
     const [gridConfig, setGridConfig] = useState({
@@ -38,161 +39,115 @@ function App() {
         }
     }
 
+    function updateColourPicker(index, newColour) {
+        setGridConfig(config => ({
+            ...config,
+            colours: config.colours.map((colour, i) =>
+                i === index ? newColour : colour
+            )
+        }))
+    }
+
     useEffect(() => {
         drawGrid(
             gridConfig
         )
     }, [gridConfig]);
-    
+        
   return (
     <>
-      <header id="main-header">
-          <h1>Blinky Squares</h1>
-      </header>
-      <section className="container">
-          <aside id="control-panel">
-              <h2>Control Panel</h2>
-                  <label>
-                      Grid Width:
-                      <input 
-                          type="number" 
-                          id="gridWidth" 
-                          min="10" 
-                          max="200" 
-                          value={gridConfig.width}
-                          onChange={(e) => 
-                              setGridConfig(config => ({
-                                  ...config,
-                                  width: Number(e.target.value)
-                              }))
-                          }
-                      />
-                  </label>
-                  <label>
-                      Grid Height:
-                      <input 
-                          type="number" 
-                          id="gridHeight" 
-                          min="10" 
-                          max="200" 
-                          value={gridConfig.height}
-                          onChange={(e) => 
-                              setGridConfig(config => ({
-                                  ...config,
-                                  height: Number(e.target.value)
-                              }))
-                          }
-                      />
-                  </label>
-                  <label>
-                      Cell Size:
-                      <input 
-                          type="number" 
-                          id="cellSize"
-                          min="5"
-                          max="20"
-                          value={gridConfig.cellSize}
-                          onChange={(e) => 
-                              setGridConfig(config => ({
-                                  ...config,
-                                  cellSize: Number(e.target.value)
-                              }))
-                          }
-                      />
-                  </label>
-                  <label>
-                      Colour 1:
-                      <input 
-                        type="color"
+        <header id="main-header">
+            <h1>Blinky Squares</h1>
+        </header>
+        <section className="container">
+            <aside id="control-panel">
+                <h2>Control Panel</h2>
+                    <label>
+                        Grid Width:
+                        <input 
+                            type="number" 
+                            id="gridWidth" 
+                            min="10" 
+                            max="200" 
+                            value={gridConfig.width}
+                            onChange={(e) => 
+                                setGridConfig(config => ({
+                                    ...config,
+                                    width: Number(e.target.value)
+                                }))
+                            }
+                        />
+                    </label>
+                    <label>
+                        Grid Height:
+                        <input 
+                            type="number" 
+                            id="gridHeight" 
+                            min="10" 
+                            max="200" 
+                            value={gridConfig.height}
+                            onChange={(e) => 
+                                setGridConfig(config => ({
+                                    ...config,
+                                    height: Number(e.target.value)
+                                }))
+                            }
+                        />
+                    </label>
+                    <label>
+                        Cell Size:
+                        <input 
+                            type="number" 
+                            id="cellSize"
+                            min="5"
+                            max="20"
+                            value={gridConfig.cellSize}
+                            onChange={(e) => 
+                                setGridConfig(config => ({
+                                    ...config,
+                                    cellSize: Number(e.target.value)
+                                }))
+                            }
+                        />
+                    </label>
+                    <ColourPicker
                         id="colour-picker0"
-                        className="colour-picker"
+                        labelText="Colour 1:"
                         value={gridConfig.colours[0]}
-                        onChange={(e) =>
-                            setGridConfig(config => ({
-                                ...config,
-                                colours: config.colours.map((colour, i) =>
-                                    i === 0 ? e.target.value : colour
-                                )
-                            }))
-                        }
-                     />
-                  </label>
-                  <label>
-                      Colour 2:
-                      <input 
-                        type="color"
-                        id="colour-picker1"
-                        className="colour-picker"
+                        onColourChange={(colour) => updateColourPicker(0, colour)}
+                    />
+                    <ColourPicker
+                        id="colour-picker0"
+                        labelText="Colour 2:"
                         value={gridConfig.colours[1]}
-                        onChange={(e) =>
-                            setGridConfig(config => ({
-                                ...config,
-                                colours: config.colours.map((colour, i) =>
-                                    i === 1 ? e.target.value : colour
-                                )
-                            }))
-                        }
-                     />
-                  </label>
-                  <label>
-                      Colour 3:
-                      <input 
-                        type="color"
-                        id="colour-picker2"
-                        className="colour-picker"
+                        onColourChange={(colour) => updateColourPicker(1, colour)}
+                    />
+                    <ColourPicker
+                        id="colour-picker0"
+                        labelText="Colour 3:"
                         value={gridConfig.colours[2]}
-                        onChange={(e) =>
-                            setGridConfig(config => ({
-                                ...config,
-                                colours: config.colours.map((colour, i) =>
-                                    i === 2 ? e.target.value : colour
-                                )
-                            }))
-                        }
-                     />
-                  </label>
-                  <label>
-                      Colour 4:
-                      <input 
-                        type="color"
-                        id="colour-picker3"
-                        className="colour-picker"
+                        onColourChange={(colour) => updateColourPicker(2, colour)}
+                    />
+                    <ColourPicker
+                        id="colour-picker0"
+                        labelText="Colour 4:"
                         value={gridConfig.colours[3]}
-                        onChange={(e) =>
-                            setGridConfig(config => ({
-                                ...config,
-                                colours: config.colours.map((colour, i) =>
-                                    i === 3 ? e.target.value : colour
-                                )
-                            }))
-                        }
-                     />
-                  </label>
-                  <label>
-                      Colour 5:
-                      <input 
-                        type="color"
-                        id="colour-picker4"
-                        className="colour-picker"
+                        onColourChange={(colour) => updateColourPicker(3, colour)}
+                    />
+                    <ColourPicker
+                        id="colour-picker0"
+                        labelText="Colour 5:"
                         value={gridConfig.colours[4]}
-                        onChange={(e) =>
-                            setGridConfig(config => ({
-                                ...config,
-                                colours: config.colours.map((colour, i) =>
-                                    i === 4 ? e.target.value : colour
-                                )
-                            }))
-                        }
-                     />
-                  </label>
-          </aside>
-          <div id="grid-container">
-              <div 
-                  id="squares-grid"
-                  ref={gridRef}
-              ></div>
-          </div>
-      </section>
+                        onColourChange={(colour) => updateColourPicker(4, colour)}
+                    />
+            </aside>
+            <div id="grid-container">
+                <div 
+                    id="squares-grid"
+                    ref={gridRef}
+                ></div>
+            </div>
+        </section>
     </>
   )
 }
