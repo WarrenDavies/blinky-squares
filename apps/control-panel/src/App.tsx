@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import { ColourPicker } from './components/ColourPicker';
+import { NumberInput } from './components/NumberInput';
 
 function App() {
     const [gridConfig, setGridConfig] = useState({
@@ -45,6 +46,13 @@ function App() {
             colours: config.colours.map((colour, i) =>
                 i === index ? newColour : colour
             )
+        }))
+    }
+
+    function updateNumericalConfig(param, newValue) {
+        setGridConfig(config => ({
+            ...config,
+            [param]: newValue
         }))
     }
 
@@ -94,22 +102,14 @@ function App() {
                             }
                         />
                     </label>
-                    <label>
-                        Cell Size:
-                        <input 
-                            type="number" 
-                            id="cellSize"
-                            min="5"
-                            max="20"
-                            value={gridConfig.cellSize}
-                            onChange={(e) => 
-                                setGridConfig(config => ({
-                                    ...config,
-                                    cellSize: Number(e.target.value)
-                                }))
-                            }
-                        />
-                    </label>
+                    <NumberInput
+                        id="cellSize"
+                        labelText="Cell size:"
+                        min="5"
+                        max="20"
+                        value={gridConfig.cellSize}
+                        onInputChange={(value) => updateNumericalConfig("cellSize", value)}
+                    />
                     <ColourPicker
                         id="colour-picker0"
                         labelText="Colour 1:"
