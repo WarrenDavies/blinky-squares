@@ -86,22 +86,14 @@ function App() {
                             }
                         />
                     </label>
-                    <label>
-                        Grid Height:
-                        <input 
-                            type="number" 
-                            id="gridHeight" 
-                            min="10" 
-                            max="200" 
-                            value={gridConfig.height}
-                            onChange={(e) => 
-                                setGridConfig(config => ({
-                                    ...config,
-                                    height: Number(e.target.value)
-                                }))
-                            }
-                        />
-                    </label>
+                    <NumberInput
+                        id="gridHeight"
+                        labelText="Grid Height:"
+                        min="10"
+                        max="200"
+                        value={gridConfig.height}
+                        onInputChange={(value) => updateNumericalConfig("height", value)}
+                    />
                     <NumberInput
                         id="cellSize"
                         labelText="Cell size:"
