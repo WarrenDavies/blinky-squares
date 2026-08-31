@@ -70,22 +70,14 @@ function App() {
         <section className="container">
             <aside id="control-panel">
                 <h2>Control Panel</h2>
-                    <label>
-                        Grid Width:
-                        <input 
-                            type="number" 
-                            id="gridWidth" 
-                            min="10" 
-                            max="200" 
-                            value={gridConfig.width}
-                            onChange={(e) => 
-                                setGridConfig(config => ({
-                                    ...config,
-                                    width: Number(e.target.value)
-                                }))
-                            }
-                        />
-                    </label>
+                    <NumberInput
+                        id="gridWidth"
+                        labelText="Grid Width:"
+                        min="1"
+                        max="200"
+                        value={gridConfig.width}
+                        onInputChange={(value) => updateNumericalConfig("width", value)}
+                    />
                     <NumberInput
                         id="gridHeight"
                         labelText="Grid Height:"
