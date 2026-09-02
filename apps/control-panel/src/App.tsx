@@ -8,13 +8,19 @@ function App() {
         width: 100,
         height: 100,
         cellSize: 10,
-        colours: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF'],
+        colours: [
+            { id: 1, colour: "#FF0000" },
+            { id: 2, colour: "#00FF00" },
+            { id: 3, colour: "#0000FF" },
+            { id: 4, colour: "#FFFF00" },
+            { id: 5, colour: "#FF00FF" }
+        ],
         blinkSpeeds: [0.5, 1, 1.5, 2, 2.5],
     });
     const gridRef = useRef(null);
 
     function getRandomColor(colors) {
-        return colors[Math.floor(Math.random() * colors.length)];
+        return colors[Math.floor(Math.random() * colors.length)].colour;
     }
 
     function drawGrid(
@@ -40,11 +46,13 @@ function App() {
         }
     }
 
-    function updateColourPicker(index, newColour) {
+    function updateColourPicker(id, newColour) {
         setGridConfig(config => ({
             ...config,
-            colours: config.colours.map((colour, i) =>
-                i === index ? newColour : colour
+            colours: config.colours.map((colourConfig, i) =>
+                id === colourConfig.id 
+                    ? { ...colourConfig, colour: newColour }
+                    : colourConfig
             )
         }))
     }
@@ -94,7 +102,16 @@ function App() {
                         value={gridConfig.cellSize}
                         onInputChange={(value) => updateNumericalConfig("cellSize", value)}
                     />
-                    <ColourPicker
+                    {gridConfig.colours.map(item => (
+                        <ColourPicker
+                            id={"colour-picker" + item.id}
+                            labelText={"Colour " + item.id}
+                            key={item.id}
+                            value={item.colour}
+                            onColourChange={(colour) => updateColourPicker(item.id, colour)}
+                        />
+                    ))}
+                    {/* <ColourPicker
                         id="colour-picker0"
                         labelText="Colour 1:"
                         value={gridConfig.colours[0]}
@@ -123,7 +140,7 @@ function App() {
                         labelText="Colour 5:"
                         value={gridConfig.colours[4]}
                         onColourChange={(colour) => updateColourPicker(4, colour)}
-                    />
+                    /> */}
             </aside>
             <div id="grid-container">
                 <div 
