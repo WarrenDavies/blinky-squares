@@ -15,12 +15,22 @@ function App() {
             { id: 4, colour: "#FFFF00" },
             { id: 5, colour: "#FF00FF" }
         ],
-        blinkSpeeds: [0.5, 1, 1.5, 2, 2.5],
+        blinkSpeeds: [
+            { id: 1, speed: 0.5, },
+            { id: 2, speed: 1, },
+            { id: 3, speed: 1.5, },
+            { id: 4, speed: 2, },
+            { id: 5, speed: 2.5 },
+        ],
     });
     const gridRef = useRef(null);
 
     function getRandomColor(colors) {
         return colors[Math.floor(Math.random() * colors.length)].colour;
+    }
+
+    function getRandomSpeed(speeds) {
+        return speeds[Math.floor(Math.random() * speeds.length)].speed;
     }
 
     function drawGrid(
@@ -37,9 +47,7 @@ function App() {
             const square = document.createElement('div');
             square.classList.add('square');
             square.style.backgroundColor = getRandomColor(gridConfig.colours);
-            
-            const randomSpeed = gridConfig.blinkSpeeds[Math.floor(Math.random() * gridConfig.blinkSpeeds.length)];
-            square.style.animationDuration = `${randomSpeed}s`;
+            square.style.animationDuration = `${getRandomSpeed(gridConfig.blinkSpeeds)}s`;
             square.style.animationDelay = `${Math.random() * 2}s`;
 
             gridContainer.appendChild(square);
@@ -50,7 +58,7 @@ function App() {
         setGridConfig(config => ({
             ...config,
             colours: config.colours.map((colourConfig, i) =>
-                id === colourConfig.id 
+                id === colourConfig.id
                     ? { ...colourConfig, colour: newColour }
                     : colourConfig
             )
@@ -111,36 +119,6 @@ function App() {
                             onColourChange={(colour) => updateColourPicker(item.id, colour)}
                         />
                     ))}
-                    {/* <ColourPicker
-                        id="colour-picker0"
-                        labelText="Colour 1:"
-                        value={gridConfig.colours[0]}
-                        onColourChange={(colour) => updateColourPicker(0, colour)}
-                    />
-                    <ColourPicker
-                        id="colour-picker0"
-                        labelText="Colour 2:"
-                        value={gridConfig.colours[1]}
-                        onColourChange={(colour) => updateColourPicker(1, colour)}
-                    />
-                    <ColourPicker
-                        id="colour-picker0"
-                        labelText="Colour 3:"
-                        value={gridConfig.colours[2]}
-                        onColourChange={(colour) => updateColourPicker(2, colour)}
-                    />
-                    <ColourPicker
-                        id="colour-picker0"
-                        labelText="Colour 4:"
-                        value={gridConfig.colours[3]}
-                        onColourChange={(colour) => updateColourPicker(3, colour)}
-                    />
-                    <ColourPicker
-                        id="colour-picker0"
-                        labelText="Colour 5:"
-                        value={gridConfig.colours[4]}
-                        onColourChange={(colour) => updateColourPicker(4, colour)}
-                    /> */}
             </aside>
             <div id="grid-container">
                 <div 
